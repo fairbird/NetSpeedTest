@@ -1,10 +1,9 @@
 from enigma import eConsoleAppContainer
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
-from Components.ActionMap import NumberActionMap,ActionMap
+from Components.ActionMap import ActionMap
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from Components.MenuList import MenuList
 
 PLUGIN_PATH='/usr/lib/enigma2/python/Plugins/SystemPlugins/NetSpeedTest'
 
@@ -14,7 +13,7 @@ class NetSpeedTestScreen(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         self.color = '#800080'
-        self['data'] = Label('Testing net speed,please wait......')
+        self['data'] = Label('Testing net speed, please wait ...')
         self['ping'] = Label(' ')
         self['host'] = Label(' ')
         self['ip'] = Label(' ')
@@ -35,7 +34,7 @@ class NetSpeedTestScreen(Screen):
         self.container.dataAvail.append(self.dataAvail)
         if self.finished == False:
             return
-        self['data'].setText('Testing net speed......')
+        self['data'].setText('Testing net speed ...')
         self['ping'].setText('')
         self['host'].setText('')
         self['ip'].setText('')
@@ -93,7 +92,7 @@ class NetSpeedTestScreen(Screen):
                     upload = ''
 
                 self['upload'].setText(str(upload))
-                self['data'].setText(' Test completed,to test again press green')
+                self['data'].setText(' Test completed, to test again press the green button.')
                 return
             self['data'].setText(self.data)
 

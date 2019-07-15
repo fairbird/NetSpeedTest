@@ -1,5 +1,3 @@
 NetSpeedTest [![Build Status](https://travis-ci.org/OpenVisionE2/NetSpeedTest.svg?branch=master)](https://travis-ci.org/OpenVisionE2/NetSpeedTest) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-========
-NetSpeedTest for Test Internet Speed.
-
-Code by mfaraj57
+============
+NetSpeedTest for testing internet speed by mfaraj57
