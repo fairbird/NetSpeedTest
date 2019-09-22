@@ -21,7 +21,7 @@ class NetSpeedTestScreen(Screen):
         self['upload'] = Label(' ')
         self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'cancel': self.exit,
          'green': self.testagain}, -1)
-        cmd = 'python ' + PLUGIN_PATH + '/speedtest.py'
+        cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
         self.finished = False
         self.data = ''
         self.container = eConsoleAppContainer()
@@ -40,7 +40,7 @@ class NetSpeedTestScreen(Screen):
         self['ip'].setText('')
         self['download'].setText('')
         self['upload'].setText('')
-        cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.py'
+        cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyo'
         self.container.execute(cmd)
 
     def action(self, retval):
