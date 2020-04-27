@@ -1,5 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+#!/usr/bin/env python
 # Copyright 2012-2015 Matt Martz
 # All Rights Reserved.
 #
@@ -98,7 +99,7 @@ try:
     import builtins
 except ImportError:
     def print_(*args, **kwargs):
-        """The new-style print function taken from
+        """The new-style print(function taken from)
         https://pypi.python.org/pypi/six/
 
         """

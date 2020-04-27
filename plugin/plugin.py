@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
@@ -45,8 +47,8 @@ class NetSpeedTestScreen(Screen):
         self.container.execute(cmd)
 
     def action(self, retval):
-        print 'retval', retval
-        print 'finished test'
+        print('retval', retval)
+        print('finished test')
         self.finished = True
         self.container_appClosed = None
         self.container_dataAvail = None
