@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-#!/usr/bin/env python
 # Copyright 2012-2015 Matt Martz
 # All Rights Reserved.
 #
@@ -42,26 +41,26 @@ socket_socket = socket.socket
 
 try:
     import xml.etree.cElementTree as ET
-except ImportError:
+except ImportError as e:
     try:
         import xml.etree.ElementTree as ET
-    except ImportError:
+    except ImportError as e:
         from xml.dom import minidom as DOM
         ET = None
 
 # Begin import game to handle Python 2 and Python 3
 try:
     from urllib2 import urlopen, Request, HTTPError, URLError
-except ImportError:
+except ImportError as e:
     from urllib.request import urlopen, Request, HTTPError, URLError
 
 try:
     from httplib import HTTPConnection, HTTPSConnection
-except ImportError:
+except ImportError as e:
     e_http_py2 = sys.exc_info()
     try:
         from http.client import HTTPConnection, HTTPSConnection
-    except ImportError:
+    except ImportError as e:
         e_http_py3 = sys.exc_info()
         raise SystemExit('Your python installation is missing required HTTP '
                          'client classes:\n\n'
@@ -70,35 +69,35 @@ except ImportError:
 
 try:
     from Queue import Queue
-except ImportError:
+except ImportError as e:
     from queue import Queue
 
 try:
     from urlparse import urlparse
-except ImportError:
+except ImportError as e:
     from urllib.parse import urlparse
 
 try:
     from urlparse import parse_qs
-except ImportError:
+except ImportError as e:
     try:
         from urllib.parse import parse_qs
-    except ImportError:
+    except ImportError as e:
         from cgi import parse_qs
 
 try:
     from hashlib import md5
-except ImportError:
+except ImportError as e:
     from md5 import md5
 
 try:
     from argparse import ArgumentParser as ArgParser
-except ImportError:
+except ImportError as e:
     from optparse import OptionParser as ArgParser
 
 try:
     import builtins
-except ImportError:
+except ImportError as e:
     def print_(*args, **kwargs):
         """The new-style print(function taken from)
         https://pypi.python.org/pypi/six/
