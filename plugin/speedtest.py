@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import division, print_function
 # Copyright 2012-2015 Matt Martz
 # All Rights Reserved.
 #
@@ -177,10 +177,10 @@ def distance(origin, destination):
 
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
-    a = (math.sin(dlat / 2) * math.sin(dlat / 2) +
+    a = (math.sin(dlat // 2) * math.sin(dlat // 2) +
          math.cos(math.radians(lat1)) *
-         math.cos(math.radians(lat2)) * math.sin(dlon / 2) *
-         math.sin(dlon / 2))
+         math.cos(math.radians(lat2)) * math.sin(dlon // 2) *
+         math.sin(dlon // 2))
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     d = radius * c
 
@@ -293,7 +293,7 @@ def downloadSpeed(files, quiet=False):
         prod_thread.join(timeout=0.1)
     while cons_thread.isAlive():
         cons_thread.join(timeout=0.1)
-    return (sum(finished) / (timeit.default_timer() - start))
+    return (sum(finished) // (timeit.default_timer() - start))
 
 
 class FilePutter(threading.Thread):
@@ -302,7 +302,7 @@ class FilePutter(threading.Thread):
     def __init__(self, url, start, size):
         self.url = url
         chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-        data = chars * (int(round(int(size) / 36.0)))
+        data = chars * (int(round(int(size) // 36.0)))
         self.data = ('content1=%s' % data[0:int(size) - 9]).encode()
         del data
         self.result = None
@@ -358,7 +358,7 @@ def uploadSpeed(url, sizes, quiet=False):
         prod_thread.join(timeout=0.1)
     while cons_thread.isAlive():
         cons_thread.join(timeout=0.1)
-    return (sum(finished) / (timeit.default_timer() - start))
+    return (sum(finished) // (timeit.default_timer() - start))
 
 
 def getAttributesByTagName(dom, tagName):
@@ -525,7 +525,7 @@ def getBestServer(servers):
             else:
                 cum.append(3600)
             h.close()
-        avg = round((sum(cum) / 6) * 1000, 3)
+        avg = round((sum(cum) // 6) * 1000, 3)
         results[avg] = server
     fastest = sorted(results.keys())[0]
     best = results[fastest]
@@ -727,7 +727,7 @@ def speedtest():
     if not args.simple:
         print_()
     print_('Download: %0.2f M%s/s' %
-           ((dlspeed / 1000 / 1000) * args.units[1], args.units[0]))
+           ((dlspeed // 1000 // 1000) * args.units[1], args.units[0]))
 
     sizesizes = [int(.25 * 1000 * 1000), int(.5 * 1000 * 1000)]
     sizes = []
@@ -740,15 +740,15 @@ def speedtest():
     if not args.simple:
         print_()
     print_('Upload: %0.2f M%s/s' %
-           ((ulspeed / 1000 / 1000) * args.units[1], args.units[0]))
+           ((ulspeed // 1000 // 1000) * args.units[1], args.units[0]))
 
     if args.share and args.mini:
         print_('Cannot generate a speedtest.net share results image while '
                'testing against a Speedtest Mini server')
     elif args.share:
-        dlspeedk = int(round((dlspeed / 1000) * 8, 0))
+        dlspeedk = int(round((dlspeed // 1000) * 8, 0))
         ping = int(round(best['latency'], 0))
-        ulspeedk = int(round((ulspeed / 1000) * 8, 0))
+        ulspeedk = int(round((ulspeed // 1000) * 8, 0))
 
         # Build the request to send results back to speedtest.net
         # We use a list instead of a dict because the API expects parameters
