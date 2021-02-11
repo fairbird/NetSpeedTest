@@ -384,7 +384,7 @@ def getConfig():
         
         return None
     configxml = []
-    while 1:
+    while True:
         configxml.append(uh.read(10240))
         if len(configxml[-1]) == 0:
             break
@@ -435,7 +435,7 @@ def closestServers(client, all=False):
                 errors.append('%s' % e)
                 raise SpeedtestCliServerListError
             serversxml = []
-            while 1:
+            while True:
                 serversxml.append(uh.read(10240))
                 if len(serversxml[-1]) == 0:
                     break
