@@ -798,7 +798,7 @@ def speedtest():
 def main():
     try:
         speedtest()
-    except :
+    except:
         
         print_('\nCancelling...')
 
