@@ -381,7 +381,7 @@ def getConfig():
     uh, e = catch_request(request)
     if e:
         print('Could not retrieve speedtest.net configuration: %s' % e)
-        
+
         return None
     configxml = []
     while True:
@@ -784,20 +784,20 @@ def speedtest():
 
         qsargs = parse_qs(response.decode())
         resultid = qsargs.get('resultid')
-        
+
         if not resultid or len(resultid) != 1:
             print_('Could not submit results to speedtest.net')
             sys.exit(1)
 
         print_('Share results: %s://www.speedtest.net/result/%s.png' %
                (scheme, resultid[0]))
-        
-              
+
+
 def main():
     try:
         speedtest()
     except:
-        
+
         print_('\nCancelling...')
 
 
