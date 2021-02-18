@@ -123,5 +123,5 @@ def callFunction(iface):
 
 def Plugins(**kwargs):
                                                                                                                                                                            
- 	return PluginDescriptor(name=_("NetSpeedTest"), description=_("Test net speed")+"\n", where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction,  "menuEntryName": lambda x: _("NetSpeedTest"), "menuEntryDescription": lambda x: _("Test net speed...")+"\n"})
+ 	return PluginDescriptor(name=_("NetSpeedTest"), description=_("Test net speed")+"\n", where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction,  "menuEntryName": lambda x: _("NetSpeedTest"), "menuEntryDescription": lambda x: _("Test net speed...")+"\n"})
 
