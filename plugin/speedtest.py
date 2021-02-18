@@ -785,7 +785,6 @@ def speedtest():
         qsargs = parse_qs(response.decode())
         resultid = qsargs.get('resultid')
         
-        
         if not resultid or len(resultid) != 1:
             print_('Could not submit results to speedtest.net')
             sys.exit(1)
@@ -794,14 +793,12 @@ def speedtest():
                (scheme, resultid[0]))
         
               
-
 def main():
     try:
         speedtest()
     except:
         
         print_('\nCancelling...')
-
 
 
 main()

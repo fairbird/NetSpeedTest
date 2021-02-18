@@ -11,6 +11,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetSpeedTest')
 
+
 class NetSpeedTestScreen(Screen):
     skin = '  <screen name="NetSpeedTestScreen"  backgroundColor="#380038" position="center,center" size="900,520" title="Net Speed Test" >\n                <ePixmap position="0,0"  size="900,520" pixmap="%s/SystemPlugins/NetSpeedTest/netspeed.jpg"     zPosition="1" transparent="1" alphatest="blend" />\n                <widget name="data" position="155,59" zPosition="4" size="610,243" font="Regular;25" foregroundColor="#76addc" transparent="1" halign="left" valign="top" />\n                <widget name="ping" position="190,29" zPosition="4" size="157,40" font="Regular;25" foregroundColor="white" transparent="1" halign="left" valign="top" />\n                <widget name="host" position="673,453" zPosition="4" size="196,56" font="Regular;25" foregroundColor="white" transparent="1" halign="left" valign="top" />\n                <widget name="ip" position="63,452" zPosition="4" size="204,53" font="Regular;25" foregroundColor="white" transparent="1" halign="left" valign="top" />\n                <widget name="download" position="398,30" zPosition="4" size="156,53" font="Regular;25" foregroundColor="white" transparent="1" halign="left" valign="top" />\n                <widget name="upload" position="597,30" zPosition="4" size="161,53" font="Regular;25" foregroundColor="white" transparent="1" halign="left" valign="top" />\n                                                       \n\t\t</screen>' % resolveFilename(SCOPE_PLUGINS)
 
@@ -55,7 +56,6 @@ class NetSpeedTestScreen(Screen):
         self.container_dataAvail = None
         self.container.appClosed.remove(self.action)
         self.container.dataAvail.remove(self.dataAvail)
-
 
     def dataAvail(self, rstr):
         if rstr:
@@ -110,16 +110,14 @@ class NetSpeedTestScreen(Screen):
         self.setTitle(self.newtitle)
 
 
-
-
 def netspeedMain(session, iface):
 	session.open(NetSpeedTestScreen)
+
 
 def callFunction(iface):
 	
 		return netspeedMain
 	
-
 
 def Plugins(**kwargs):
                                                                                                                                                                            
