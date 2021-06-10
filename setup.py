@@ -5,10 +5,10 @@ import setup_translate
 
 pkg = 'SystemPlugins.NetSpeedTest'
 setup(name='enigma2-plugin-systemplugins-netspeedtest',
-       version='1.0',
+       version='1.1',
        description='Plugin For Test Internet Speed.',
        packages=[pkg],
        package_dir={pkg: 'plugin'},
-       package_data={pkg: ['plugin.png', '*/*.png', 'locale/*/LC_MESSAGES/*.mo']},
+       package_data={pkg: ['netspeed.jpg', '*/*.jpg', 'locale/*/LC_MESSAGES/*.mo']},
        cmdclass=setup_translate.cmdclass, # for translation
       )
