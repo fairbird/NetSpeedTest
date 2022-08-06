@@ -1,6 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 # Copyright 2012-2015 Matt Martz
 # All Rights Reserved.
 #
