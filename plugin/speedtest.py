@@ -623,8 +623,8 @@ def speedtest():
     try:
         config = getConfig()
         if config is None:
-           print_('Cannot retrieve speedtest configuration')
-           sys.exit(1)
+            print_('Cannot retrieve speedtest configuration')
+            sys.exit(1)
     except URLError:
         print_('Cannot retrieve speedtest configuration')
         sys.exit(1)
