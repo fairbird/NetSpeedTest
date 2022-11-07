@@ -10,7 +10,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from sys import version_info
 PY3 = version_info[0] == 3
 
-PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetSpeedTest')
+PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/netspeedtest')
 
 
 class NetSpeedTestScreen(Screen):
@@ -50,9 +50,9 @@ class NetSpeedTestScreen(Screen):
         self['download'].setText('')
         self['upload'].setText('')
         if PY3:
-                cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyc'
+                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyc'
         else:
-                cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyo'
+                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
         self.container.execute(cmd)
 
     def action(self, retval):
@@ -66,6 +66,8 @@ class NetSpeedTestScreen(Screen):
 
     def dataAvail(self, rstr):
         if rstr:
+            if PY3:
+                rstr = rstr.decode('utf-8')
             self.data = self.data + rstr
             parts = rstr.split('\n')
             for part in parts:
@@ -74,8 +76,8 @@ class NetSpeedTestScreen(Screen):
                         host = part.split('Hosted by')[1].split('[')[0].strip()
                     except:
                         host = ''
-
                     self['host'].setText(str(host))
+
                 if 'Testing from' in part:
                     ip = part.split('Testing from')[1].split(')')[0].replace('(', '').strip()
                     self['ip'].setText(str(ip))
@@ -85,8 +87,8 @@ class NetSpeedTestScreen(Screen):
                     ping = rstr.split('Ping')[1].split('\n')[0].strip()
                 except:
                     ping = ''
-
                 self['ping'].setText(str(ping))
+
             if 'Download:' in rstr:
                 try:
                     download = rstr.split(':')[1].split('\n')[0].strip()
@@ -96,15 +98,16 @@ class NetSpeedTestScreen(Screen):
                 self['download'].setText(str(download))
                 self.data = ''
                 self.data = 'Testing upload speed....'
+
             if 'Upload:' in rstr:
                 try:
                     upload = rstr.split(':')[1].split('\n')[0].strip()
                 except:
                     upload = ''
-
                 self['upload'].setText(str(upload))
                 self['data'].setText(' Test completed, to test again press the green button.')
                 return
+
             self['data'].setText(self.data)
 
     def exit(self):
