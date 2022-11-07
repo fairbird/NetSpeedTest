@@ -1,5 +1,6 @@
-name: netspeedtest
+name: NetSpeedTest
 
+on:
   push:
     branches: [ master ]
   pull_request:
@@ -16,7 +17,7 @@ jobs:
         sudo apt-get install git
         sudo apt-get install build-essential
         sudo apt-get install gettext
-    - name: compile internetspeedtest python
+    - name: compile BackUpFlash python
       run: |
         python -m compileall .
         find . -type f -name "*.po" -exec msgfmt {} -o {}.mo \;
