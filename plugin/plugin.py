@@ -7,6 +7,9 @@ from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
+from sys import version_info
+PY3 = version_info[0] == 3
+
 PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/NetSpeedTest')
 
 
@@ -24,7 +27,10 @@ class NetSpeedTestScreen(Screen):
         self['upload'] = Label(' ')
         self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'cancel': self.exit,
          'green': self.testagain}, -1)
-        cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
+        if PY3:
+                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyc'
+        else:
+                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
         self.finished = False
         self.data = ''
         self.container = eConsoleAppContainer()
@@ -43,7 +49,10 @@ class NetSpeedTestScreen(Screen):
         self['ip'].setText('')
         self['download'].setText('')
         self['upload'].setText('')
-        cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyo'
+        if PY3:
+                cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyc'
+        else:
+                cmd = 'python ' + PLUGIN_PATH + '/lib/speedtest.pyo'
         self.container.execute(cmd)
 
     def action(self, retval):
@@ -109,14 +118,14 @@ class NetSpeedTestScreen(Screen):
 
 
 def netspeedMain(session, iface):
-	session.open(NetSpeedTestScreen)
+        session.open(NetSpeedTestScreen)
 
 
 def callFunction(iface):
 
-		return netspeedMain
+                return netspeedMain
 
 
 def Plugins(**kwargs):
 
-    	return PluginDescriptor(name=_("NetSpeedTest"), description=_("Test net speed") + "\n", where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "menuEntryName": lambda x: _("NetSpeedTest"), "menuEntryDescription": lambda x: _("Test net speed...") + "\n"})
+        return PluginDescriptor(name=_("NetSpeedTest"), description=_("Test net speed") + "\n", where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "menuEntryName": lambda x: _("NetSpeedTest"), "menuEntryDescription": lambda x: _("Test net speed...") + "\n"})
