@@ -1,3 +1,3 @@
-NetSpeedTest [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![netspeedtest](https://github.com/fairbird/NetSpeedTest/actions/workflows/netspeedtest.yml/badge.svg)](https://github.com/fairbird/NetSpeedTest/actions/workflows/netspeedtest.yml) [![ovbot](https://github.com/fairbird/NetSpeedTest/actions/workflows/ovbot.yml/badge.svg)](https://github.com/fairbird/NetSpeedTest/actions/workflows/ovbot.yml)
+Net Speed Test [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) [![netspeedtest](https://github.com/fairbird/netspeedtest/actions/workflows/netspeedtest.yml/badge.svg)](https://github.com/fairbird/netspeedtest/actions/workflows/netspeedtest.yml)
 ============
 NetSpeedTest for testing internet speed by mfaraj57
