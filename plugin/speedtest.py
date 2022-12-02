@@ -956,7 +956,6 @@ class SpeedtestResults(object):
 			self.server = server
 		self.client = client or {}
 
-		self._share = None
 		self.timestamp = '%sZ' % datetime.datetime.utcnow().isoformat()
 		self.bytes_received = 0
 		self.bytes_sent = 0
@@ -975,9 +974,6 @@ class SpeedtestResults(object):
 		"""POST data to the speedtest.net API to obtain a share results
 		link
 		"""
-
-		if self._share:
-			return self._share
 
 		download = int(round(self.download / 1000.0, 0))
 		ping = int(round(self.ping, 0))
@@ -1019,19 +1015,7 @@ class SpeedtestResults(object):
 		f.close()
 
 		if int(code) != 200:
-			raise ShareResultsSubmitFailure('Could not submit results to '
-											'speedtest.net')
-
-		qsargs = parse_qs(response.decode())
-		resultid = qsargs.get('resultid')
-		if not resultid or len(resultid) != 1:
-			raise ShareResultsSubmitFailure('Could not submit results to '
-											'speedtest.net')
-
-		self._share = 'http://www.speedtest.net/result/%s.png' % resultid[0]
-
-		return self._share
-
+			raise ShareResultsSubmitFailure('Could not submit results to ''speedtest.net')
 	def dict(self):
 		"""Return dictionary of result data"""
 
@@ -1043,7 +1027,6 @@ class SpeedtestResults(object):
 			'timestamp': self.timestamp,
 			'bytes_sent': self.bytes_sent,
 			'bytes_received': self.bytes_received,
-			'share': self._share,
 			'client': self.client,
 		}
 
@@ -1067,7 +1050,7 @@ class SpeedtestResults(object):
 		row = [data['server']['id'], data['server']['sponsor'],
 			   data['server']['name'], data['timestamp'],
 			   data['server']['d'], data['ping'], data['download'],
-			   data['upload'], self._share or '', self.client['ip']]
+			   data['upload'], '', self.client['ip']]
 		writer.writerow([to_utf8(v) for v in row])
 		return out.getvalue()
 
