@@ -10,7 +10,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from sys import version_info
 PY3 = version_info[0] == 3
 
-PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'SystemPlugins/netspeedtest')
+PLUGIN_PATH = '/usr/lib/enigma2/python/Plugins/SystemPlugins/NetSpeedTest/speedtest.py'
 
 
 class NetSpeedTestScreen(Screen):
@@ -27,10 +27,7 @@ class NetSpeedTestScreen(Screen):
         self['upload'] = Label(' ')
         self['actions'] = ActionMap(['OkCancelActions', 'ColorActions'], {'cancel': self.exit,
          'green': self.testagain}, -1)
-        if PY3:
-                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyc'
-        else:
-                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
+        cmd = "python " + PLUGIN_PATH + " --no-pre-allocate --share --secure"
         self.finished = False
         self.data = ''
         self.container = eConsoleAppContainer()
@@ -49,10 +46,7 @@ class NetSpeedTestScreen(Screen):
         self['ip'].setText('')
         self['download'].setText('')
         self['upload'].setText('')
-        if PY3:
-                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyc'
-        else:
-                cmd = 'python ' + PLUGIN_PATH + '/speedtest.pyo'
+        cmd = "python " + PLUGIN_PATH + " --no-pre-allocate --share --secure"
         self.container.execute(cmd)
 
     def action(self, retval):
